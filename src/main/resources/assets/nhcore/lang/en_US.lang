@@ -1,0 +1,32 @@
+//---Tooltip---//
+tooltip.details.shift1=Hold
+tooltip.details.shift2=Shift
+tooltip.details.shift3=for Details
+tooltip.details.alt1=Hold
+tooltip.details.alt2=Alt
+tooltip.details.alt3=for Mods
+tooltip.details.ctrl1=Hold
+tooltip.details.ctrl2=CTRL
+tooltip.details.ctrl3=for Advanced Info
+
+//---Colors---//
+nh.color.black=Black
+nh.color.red=Red
+nh.color.green=Green
+nh.color.brown=Brown
+nh.color.blue=Blue
+nh.color.purple=Purple
+nh.color.cyan=Cyan
+nh.color.lightGray=Light Gray
+nh.color.gray=Gray
+nh.color.pink=Pink
+nh.color.lime=Lime
+nh.color.yellow=Yellow
+nh.color.lightBlue=Light Blue
+nh.color.magenta=Magenta
+nh.color.orange=Orange
+nh.color.white=White
+
+//---Keybinds---//
+key.nh.category=NHAVE's Library
+key.nh.toggle=Change Item Mode

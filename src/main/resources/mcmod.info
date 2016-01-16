@@ -1,0 +1,16 @@
+[
+{
+  "modid": "nhlib",
+  "name": "NHAVE's Library",
+  "description": "A library of function used by all my mods",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["nhave"],
+  "credits": "",
+  "logoFile": "logo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
