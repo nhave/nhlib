@@ -2,7 +2,10 @@ package com.nhave.nhlib.core;
 
 import org.apache.logging.log4j.Logger;
 
-import com.nhave.nhlib.eventhandlers.AnvilEventHandler;
+import com.nhave.nhlib.eventhandlers.ToolStationEventHandler;
+import com.nhave.nhlib.handlers.BlockHandler;
+import com.nhave.nhlib.handlers.TweaksHandler;
+import com.nhave.nhlib.network.PacketHandler;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -11,7 +14,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.MinecraftForge;
 
-@Mod(modid = Reference.MODID, version = Reference.VERSION, acceptedMinecraftVersions = Reference.MCVERSIONS, dependencies = Reference.DEPENDENCIES)
+@Mod(modid = Reference.MODID, version = Reference.VERSION, acceptedMinecraftVersions = Reference.MCVERSIONS, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUIFACTORY)
 public class NHLib
 {
     public static Logger logger;
@@ -26,15 +29,25 @@ public class NHLib
     public void preInit(FMLPreInitializationEvent event)
     {
     	logger = event.getModLog();
-    	proxy.registerLibs();
+		proxy.setupConfig(event.getSuggestedConfigurationFile());
+    	//proxy.registerLibs();
+		PacketHandler.init();
+		proxy.registerKeybindings();
+		BlockHandler.preInit();
     }
     
     @Mod.EventHandler
-    public void load(FMLInitializationEvent event) {}
+    public void load(FMLInitializationEvent event)
+    {
+    	proxy.registerEventHandlers();
+    	proxy.registerRenderers();
+    }
     
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-    	MinecraftForge.EVENT_BUS.register(new AnvilEventHandler());
+    	BlockHandler.postInit();
+    	TweaksHandler.postInit();
+    	MinecraftForge.EVENT_BUS.register(new ToolStationEventHandler());
     }
 }

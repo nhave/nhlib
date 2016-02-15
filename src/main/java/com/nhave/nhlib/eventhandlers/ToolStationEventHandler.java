@@ -2,6 +2,7 @@ package com.nhave.nhlib.eventhandlers;
 
 import com.nhave.nhlib.api.item.IItemShader;
 import com.nhave.nhlib.api.item.IShadeAble;
+import com.nhave.nhlib.events.ToolStationUpdateEvent;
 import com.nhave.nhlib.helpers.ItemHelper;
 import com.nhave.nhlib.shaders.ShaderManager;
 
@@ -11,9 +12,37 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.player.AnvilRepairEvent;
 
-public class AnvilEventHandler
+public class ToolStationEventHandler
 {
 	@SubscribeEvent
+	public void handleToolStationEvent(ToolStationUpdateEvent evt)
+	{
+		if (evt.input == null || evt.mod == null)
+		{
+			return;
+		}
+		else if (evt.input.getItem() instanceof IShadeAble && evt.mod.getItem() instanceof IItemShader)
+		{
+			if (ShaderManager.hasShader(evt.input) && ItemHelper.areItemsEqual(ShaderManager.getShader(evt.input), evt.mod)) return;
+			if (ShaderManager.canApplyShader(evt.input, evt.mod))
+			{
+				ItemStack shadeable = evt.input.copy();
+				ShaderManager.setShader(shadeable, evt.mod.copy());
+				evt.materialCost=0;
+				evt.output=shadeable;
+			}
+		}
+		else if (evt.input.getItem() instanceof IShadeAble && evt.mod.getItem() == Items.feather)
+		{
+			if (!ShaderManager.hasShader(evt.input)) return;
+			ItemStack shadeable = evt.input.copy();
+			ShaderManager.removeShader(shadeable);
+			evt.materialCost=0;
+			evt.output=shadeable;
+		}
+	}
+	
+	/*@SubscribeEvent
 	public void handleAnvilEvent(AnvilUpdateEvent evt)
 	{
 		if (evt.left == null || evt.right == null)
@@ -54,5 +83,5 @@ public class AnvilEventHandler
 		{
 			++evt.left.stackSize;
 		}
-	}
+	}*/
 }

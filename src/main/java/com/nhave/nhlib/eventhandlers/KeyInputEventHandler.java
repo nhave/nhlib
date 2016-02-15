@@ -1,8 +1,6 @@
 package com.nhave.nhlib.eventhandlers;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-
+import com.nhave.nhlib.core.Key;
 import com.nhave.nhlib.interfaces.IKeyBound;
 import com.nhave.nhlib.main.KeyBinds;
 import com.nhave.nhlib.network.MessageKeyPressed;
@@ -13,23 +11,30 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 @SideOnly(Side.CLIENT)
 public class KeyInputEventHandler
 {
-    private static String getPressedKeybinding()
+	private static Key getPressedKeybinding()
     {
-        if (KeyBinds.toggle.isPressed())
+        if (KeyBinds.toggle.getIsKeyPressed())
         {
-            return "TOGGLE";
+            return Key.TOGGLE;
         }
 
-        return "UNKNOWN";
+        return Key.UNKNOWN;
     }
 
     @SubscribeEvent
     public void handleKeyInputEvent(InputEvent.KeyInputEvent event)
     {
+    	if (getPressedKeybinding() == Key.UNKNOWN)
+        {
+            return;
+        }
+
         if (FMLClientHandler.instance().getClient().inGameHasFocus)
         {
             if (FMLClientHandler.instance().getClientPlayerEntity() != null)
@@ -39,20 +44,21 @@ public class KeyInputEventHandler
                 if (entityPlayer.getCurrentEquippedItem() != null)
                 {
                     ItemStack currentlyEquippedItemStack = entityPlayer.getCurrentEquippedItem();
-
+                    
                     if (currentlyEquippedItemStack.getItem() instanceof IKeyBound)
                     {
+                        boolean chat = ((IKeyBound)currentlyEquippedItemStack.getItem()).shouldAddChat(entityPlayer, currentlyEquippedItemStack);
                         if (entityPlayer.worldObj.isRemote)
                         {
-                            PacketHandler.INSTANCE.sendToServer(new MessageKeyPressed(getPressedKeybinding()));
+                            PacketHandler.INSTANCE.sendToServer(new MessageKeyPressed(getPressedKeybinding(), chat));
                         }
                         else
                         {
-                            ((IKeyBound) currentlyEquippedItemStack.getItem()).doKeyBindingAction(entityPlayer, currentlyEquippedItemStack, getPressedKeybinding());
+                            ((IKeyBound) currentlyEquippedItemStack.getItem()).doKeyBindingAction(entityPlayer, currentlyEquippedItemStack, getPressedKeybinding().name(), chat);
                         }
                     }
                 }
             }
         }
-    }
+   	}
 }

@@ -1,4 +1,9 @@
+//---Blocks---//
+tile.nhlib.blockToolStation.name=Tool Station
+
 //---Tooltip---//
+tooltip.block.machine=Machine
+tooltip.rarity.rare=Rare
 tooltip.details.shift1=Hold
 tooltip.details.shift2=Shift
 tooltip.details.shift3=for Details
@@ -6,7 +11,7 @@ tooltip.details.alt1=Hold
 tooltip.details.alt2=Alt
 tooltip.details.alt3=for Mods
 tooltip.details.ctrl1=Hold
-tooltip.details.ctrl2=CTRL
+tooltip.details.ctrl2=Ctrl
 tooltip.details.ctrl3=for Advanced Info
 
 //---Colors---//
@@ -30,3 +35,12 @@ nh.color.white=White
 //---Keybinds---//
 key.nh.category=NHAVE's Library
 key.nh.toggle=Change Item Mode
+
+//---Config---//
+nhlib.cfg.title.main=NHLib Configuration Menu
+nhlib.cfg.title.client=NHLib Client Configs
+nhlib.cfg.entry.client=Client Config
+nhlib.cfg.entry.client.tooltip=All Client Options
+nhlib.cfg.title.common=NHLib Common Configs
+nhlib.cfg.entry.common=Common Config
+nhlib.cfg.entry.common.tooltip=All Common Options
