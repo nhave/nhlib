@@ -130,7 +130,7 @@ public class BlockToolStation extends Block implements ITooltipBlock
 		if (!world.isRemote)
         {
     		TileEntityToolStation tile = (TileEntityToolStation) world.getTileEntity(x, y, z);
-    		if (world.getTileEntity(x, y, z) != null && !world.isAirBlock(x, y, z))
+    		if (world.getTileEntity(x, y, z) != null && !world.isAirBlock(x, y + 1, z))
     		{
     			ItemStack stack = tile.getItemStack();
     			if (stack != null) dropBlockAsItem(world, x, y, z, stack);
