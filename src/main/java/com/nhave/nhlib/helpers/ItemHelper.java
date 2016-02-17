@@ -32,4 +32,14 @@ public class ItemHelper
 			if (!player.worldObj.isRemote) player.entityDropItem(stack, 1F);
 		}
 	}
+	
+	public static ItemStack getCurrentItemOrArmor(EntityPlayer player, int slot)
+	{
+		if (slot == 0) return player.getCurrentEquippedItem();
+		else if (slot == 1) return player.getCurrentArmor(0);
+		else if (slot == 2) return player.getCurrentArmor(1);
+		else if (slot == 3) return player.getCurrentArmor(2);
+		else if (slot == 4) return player.getCurrentArmor(3);
+		else return null;
+	}
 }

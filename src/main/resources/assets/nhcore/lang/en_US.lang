@@ -1,8 +1,16 @@
+//---Creative Tab---//
+itemGroup.nhlib=NHAVE's Library
+
+//---Items---//
+item.nhlib.itemWrench.name=Wrench
+
 //---Blocks---//
 tile.nhlib.blockToolStation.name=Tool Station
 
 //---Tooltip---//
 tooltip.block.machine=Machine
+tooltip.item.wrench=Wrench
+tooltip.rarity.basic=Common
 tooltip.rarity.rare=Rare
 tooltip.details.shift1=Hold
 tooltip.details.shift2=Shift

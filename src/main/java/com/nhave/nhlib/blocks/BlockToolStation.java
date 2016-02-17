@@ -185,7 +185,7 @@ public class BlockToolStation extends Block implements ITooltipBlock
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag)
 	{
-		list.add(StringUtils.BOLD + StatCollector.translateToLocal("tooltip.block.machine"));
+		list.add(StringUtils.BOLD + StatCollector.translateToLocal("tooltip.block.machine") + "     ");
 		list.add(StringUtils.LIGHT_BLUE + StatCollector.translateToLocal("tooltip.rarity.rare"));
 	}
 }

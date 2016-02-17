@@ -18,6 +18,8 @@ public class ConfigHandler
     public static boolean tweakStoneSlab = Defaults.tweakStoneSlab;
     public static boolean tweakCommandBlock = Defaults.tweakCommandBlock;
     public static boolean tweakCommandCart = Defaults.tweakCommandCart;
+    public static boolean tweakSnowBalls = Defaults.tweakSnowBalls;
+    public static boolean tweakEnderPearls = Defaults.tweakEnderPearls;
     
     public static int hudPosition = Defaults.hudPosition;
     public static int hudOffsetX = Defaults.hudOffsetX;
@@ -62,6 +64,9 @@ public class ConfigHandler
 		tweakStoneSlab = config.get("common", "TweakStoneSlab", Defaults.tweakStoneSlab, "Adds crafting for Double Stone Slabs").getBoolean(Defaults.tweakStoneSlab);
 		tweakCommandBlock = config.get("common", "TweakCommandBlock", Defaults.tweakCommandBlock, "Adds the Command Block to the Redstone Creative Tab").getBoolean(Defaults.tweakCommandBlock);
 		tweakCommandCart = config.get("common", "TweakCommandCart", Defaults.tweakCommandCart, "Adds the Command Cart to the Transport Creative Tab").getBoolean(Defaults.tweakCommandCart);
+		
+		tweakSnowBalls = config.get("common", "TweakSnowBalls", Defaults.tweakSnowBalls, "Increases stacksize of Snow Balls 64").getBoolean(Defaults.tweakSnowBalls);
+		tweakEnderPearls = config.get("common", "TweakEnderPearls", Defaults.tweakEnderPearls, "Increases stacksize of Ender Pearls 64").getBoolean(Defaults.tweakEnderPearls);
 	}
 	
 	public static void loadClientConfig()

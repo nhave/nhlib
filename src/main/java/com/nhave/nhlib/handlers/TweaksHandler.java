@@ -18,5 +18,7 @@ public class TweaksHandler
 		}
 		if (ConfigHandler.tweakCommandBlock) Blocks.command_block.setCreativeTab(CreativeTabs.tabRedstone);
 		if (ConfigHandler.tweakCommandCart) Items.command_block_minecart.setCreativeTab(CreativeTabs.tabTransport);
+		if (ConfigHandler.tweakSnowBalls) Items.snowball.setMaxStackSize(64);
+		if (ConfigHandler.tweakEnderPearls) Items.ender_pearl.setMaxStackSize(64);
 	}
 }
